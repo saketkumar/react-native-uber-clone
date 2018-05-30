@@ -4,6 +4,7 @@ import { StyleSheet, View, ImageBackground, TextInput, Text, Image, TouchableOpa
 import { StackNavigator } from 'react-navigation';
 
 import * as Animatable from 'react-native-animatable';
+import { Icon } from 'native-base';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
 
@@ -18,12 +19,17 @@ export default class LoginScreen extends Component {
     }
 
     increaseHeight = () =>{
-
         Animated.timing(this.loginHeight, {
             toValue: SCREEN_HEIGHT ,
             duration: 500
         }).start()
+    }
 
+    decreaseHeight = () =>{
+        Animated.timing(this.loginHeight, {
+            toValue: 150 ,
+            duration: 500
+        }).start()
     }
 
     render() {
@@ -38,9 +44,28 @@ export default class LoginScreen extends Component {
             outputRange: [25, 100]
         })
 
+        const headerBackArrowOpacity = this.loginHeight.interpolate({
+            inputRange: [150 , SCREEN_HEIGHT],
+            outputRange: [0, 1]
+        })
+
 
         return(
             <View style={{flex: 1}} >
+            <Animated.View style={{ 
+                position: 'absolute',
+                height:60,
+                width:60,
+                top:60,
+                left:25,
+                zIndex:100,
+                opacity: headerBackArrowOpacity
+            }}>
+                <TouchableOpacity
+                    onPress= {() => this.decreaseHeight()} >
+                        <Icon name="md-arrow-back" style={{color: 'black'}} />
+                </TouchableOpacity>
+            </Animated.View>
                 <ImageBackground
                     source={require('./images/login_bg.jpg')} 
                     style={{flex: 1}}  
