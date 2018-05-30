@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ImageBackground, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ImageBackground, TextInput, Text, Image, TouchableOpacity } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
 
@@ -34,19 +34,29 @@ export default class LoginScreen extends Component {
                     </View>
                 </View>
                 <View>
-                    <View style={{
-                        height: 150,
-                        backgroundColor: 'white'
-                    }}>
-                    <View style={{ 
-                        alignItems: 'flex-start',
-                        marginTop: 25,
-                        paddingHorizontal: 25,
-                        opacity: 1, }}>
-                    <Text style={{ fontSize: 25, opacity: 1 }} >
-                        Get moving with Uber
-                    </Text>
-                    </View>
+                    <View style={{ height: 150, backgroundColor: 'white' }}>
+                        <View style={{  alignItems: 'flex-start', marginTop: 25, paddingHorizontal: 25, opacity: 1 }}>
+                            <Text style={{ fontSize: 25, opacity: 1 }} >
+                                Get moving with Uber
+                            </Text>
+                        </View>
+                    <TouchableOpacity>
+                        <View style={{ marginTop: 25, paddingHorizontal: 25, flexDirection: 'row' }} >
+                            <Image 
+                                source={require('./images/india.png')} 
+                                style={{
+                                height: 24,
+                                width: 24,
+                                resizeMode: 'contain'
+                                }} />
+                            <View style= {{   flexDirection: 'row', flex: 1 }}>
+                             <Text style= {{ fontSize: 20, paddingHorizontal: 10 }}> 
+                                 +91
+                             </Text>
+                            <TextInput style={{ flex: 1, fontSize: 20 }} placeholder="Enter your mobile number" />
+                        </View>
+                        </View>
+                    </TouchableOpacity>
                     </View>
                 
                 <View style={{
