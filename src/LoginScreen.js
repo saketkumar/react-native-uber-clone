@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ImageBackground, Text } from 'react-native';
+import { StyleSheet, View, ImageBackground, Text, Image, TouchableOpacity } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
 
@@ -17,9 +17,53 @@ export default class LoginScreen extends Component {
                     style={{flex: 1}}  
                 >
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <View style={{ backgroundColor: 'white', height: 100, width: 100, justifyContent: 'center', alignItems: 'center' }} >
-                        <Text style={{ fontSize: 25, fontWeight: 'bold'}} > UBER </Text>
+                    <View style={{ 
+                        backgroundColor: 'white', 
+                        height: 100, width: 100, 
+                        justifyContent: 'center', 
+                        alignItems: 'center',
+                        elevation : 15
+                        }} >
+                        <Text style={{ 
+                            fontSize: 25, 
+                            fontWeight: 'bold',
+                            color: 'black'
+                            }} > 
+                            UBER 
+                        </Text>
                     </View>
+                </View>
+                <View>
+                    <View style={{
+                        height: 150,
+                        backgroundColor: 'white'
+                    }}>
+                    <View style={{ 
+                        alignItems: 'flex-start',
+                        marginTop: 25,
+                        paddingHorizontal: 25,
+                        opacity: 1, }}>
+                    <Text style={{ fontSize: 25, opacity: 1 }} >
+                        Get moving with Uber
+                    </Text>
+                    </View>
+                    </View>
+                
+                <View style={{
+                    backgroundColor: 'white',
+                    height: 70,
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
+                    borderTopWidth: 1,
+                    paddingHorizontal: 25,
+                    borderTopColor: '#e8e8ec'}}>
+
+                        <Text style={{ 
+                            color: '#5a7fdf',
+                            }}>
+                            or connect with social
+                        </Text>
+                </View>
                 </View>
                 </ImageBackground>    
             </View>
