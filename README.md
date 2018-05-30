@@ -1,1 +1,3 @@
-# react-native-uber-clone
+# React Native Uber clone
+
+![screenshot](./screenshot.png)
