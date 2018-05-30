@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
 
-import LoginScreen from './src/Screens/LoginScreen'
+import LoginScreen from './src/LoginScreen'
 
 type Props = {};
 export default class App extends Component<Props> {
