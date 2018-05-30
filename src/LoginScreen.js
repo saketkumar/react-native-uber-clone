@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ImageBackground, TextInput, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ImageBackground, TextInput, Text, Image, TouchableOpacity, Animated, Dimensions } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
+
+import * as Animatable from 'react-native-animatable';
+
+const SCREEN_HEIGHT = Dimensions.get('window').height
 
 export default class LoginScreen extends Component {
 
@@ -9,7 +13,32 @@ export default class LoginScreen extends Component {
         header:  null
     }
 
+    componentWillMount () {
+        this.loginHeight = new Animated.Value(150)
+    }
+
+    increaseHeight = () =>{
+
+        Animated.timing(this.loginHeight, {
+            toValue: SCREEN_HEIGHT ,
+            duration: 500
+        }).start()
+
+    }
+
     render() {
+
+        const headerTextOpacity = this.loginHeight.interpolate({
+            inputRange: [150 , SCREEN_HEIGHT],
+            outputRange: [1, 0]
+        })
+
+        const marginTop = this.loginHeight.interpolate({
+            inputRange: [150 , SCREEN_HEIGHT],
+            outputRange: [25, 100]
+        })
+
+
         return(
             <View style={{flex: 1}} >
                 <ImageBackground
@@ -17,7 +46,10 @@ export default class LoginScreen extends Component {
                     style={{flex: 1}}  
                 >
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <View style={{ 
+                    <Animatable.View 
+                        animation="zoomIn"
+                        iterationCount={1}
+                        style={{ 
                         backgroundColor: 'white', 
                         height: 100, width: 100, 
                         justifyContent: 'center', 
@@ -31,16 +63,16 @@ export default class LoginScreen extends Component {
                             }} > 
                             UBER 
                         </Text>
-                    </View>
+                    </Animatable.View>
                 </View>
-                <View>
-                    <View style={{ height: 150, backgroundColor: 'white' }}>
-                        <View style={{  alignItems: 'flex-start', marginTop: 25, paddingHorizontal: 25, opacity: 1 }}>
+                <Animatable.View animation="slideInUp" iterationCount={1} >
+                    <Animated.View style={{ height: this.loginHeight, backgroundColor: 'white' }}>
+                        <Animated.View style={{  alignItems: 'flex-start', marginTop: marginTop , paddingHorizontal: 25, opacity: headerTextOpacity }}>
                             <Text style={{ fontSize: 25, opacity: 1 }} >
                                 Get moving with Uber
                             </Text>
-                        </View>
-                    <TouchableOpacity>
+                        </Animated.View>
+                    <TouchableOpacity onPress= {() => this.increaseHeight() } >
                         <View style={{ marginTop: 25, paddingHorizontal: 25, flexDirection: 'row' }} >
                             <Image 
                                 source={require('./images/india.png')} 
@@ -49,7 +81,8 @@ export default class LoginScreen extends Component {
                                 width: 24,
                                 resizeMode: 'contain'
                                 }} />
-                            <View style= {{   flexDirection: 'row', flex: 1 }}>
+                            <View pointerEvents="none"
+                                style= {{   flexDirection: 'row', flex: 1 }}>
                              <Text style= {{ fontSize: 20, paddingHorizontal: 10 }}> 
                                  +91
                              </Text>
@@ -57,7 +90,7 @@ export default class LoginScreen extends Component {
                         </View>
                         </View>
                     </TouchableOpacity>
-                    </View>
+                    </Animated.View>
                 
                 <View style={{
                     backgroundColor: 'white',
@@ -74,7 +107,7 @@ export default class LoginScreen extends Component {
                             or connect with social
                         </Text>
                 </View>
-                </View>
+                </Animatable.View>
                 </ImageBackground>    
             </View>
         )
