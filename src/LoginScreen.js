@@ -64,7 +64,7 @@ export default class LoginScreen extends Component {
             }}>
                 <TouchableOpacity
                     onPress= {() => this.decreaseHeight()} >
-                        {/* <Icon name="md-arrow-back" style={{color: 'black'}} /> */}
+                        <Icon name="md-arrow-back" style={{color: 'black'}} />
                 </TouchableOpacity>
             </Animated.View>
                 <ImageBackground
